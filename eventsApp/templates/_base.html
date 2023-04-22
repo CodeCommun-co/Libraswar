@@ -1,0 +1,33 @@
+{% load django_htmx %}
+{% load static %}
+<!doctype html>
+<html lang="fr">
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Libraswar</title>
+    <link rel="stylesheet" href="{% static 'css/paper.min.css' %}">
+
+    <!-- An example of how we can configure htmx -->
+    <!-- https://htmx.org/docs/#config -->
+    <meta name="htmx-config" content='{"historyCacheSize": 15}'>
+
+    <script src="{% static 'js/htmx.min.js' %}" defer></script>
+</head>
+
+<!--
+  Enable htmx extensions for all requests:
+  * debug: https://htmx.org/extensions/debug/
+  * event-header: https://htmx.org/extensions/event-header/
+-->
+<body hx-ext="debug, event-header">
+<div class="paper container">
+    <main id="main">
+        {% block main %}{% endblock %}
+    </main>
+</div>
+
+{% django_htmx_script %}
+</body>
+</html>
